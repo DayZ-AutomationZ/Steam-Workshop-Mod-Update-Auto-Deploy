@@ -274,7 +274,7 @@ Global configuration.
 🧩 AutomationZ 
 These tools are part of the AutomationZ Admin Toolkit:
 
-- AutomationZ Mod Update Auto Deploy
+- AutomationZ Mod Update Auto Deploy (steam workshop)
 - AutomationZ Uploader
 - AutomationZ Scheduler
 - AutomationZ Server Backup Scheduler
