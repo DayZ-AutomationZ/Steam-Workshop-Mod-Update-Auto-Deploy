@@ -271,7 +271,7 @@ Global configuration.
 ## Credits
 
 ---
-🧩 AutomationZ Admin Control Center
+🧩 AutomationZ 
 These tools are part of the AutomationZ Admin Toolkit:
 
 - AutomationZ Mod Update Auto Deploy
@@ -289,3 +289,8 @@ Together they form a complete server administration solution.
 
 AutomationZ tools are built for server owners by a server owner.  
 If these tools save you time or help your community, consider supporting development.
+
+☕ Support me [Ko-fi](https://ko-fi.com/dannyvandenbrande) 
+
+Created by **Danny van den Brande**  
+DayZ AutomationZ
