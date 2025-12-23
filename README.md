@@ -1,5 +1,5 @@
 # AutomationZ Mod Update Auto-Deploy
-
+[![Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png](https://i.postimg.cc/zGxm7tkV/Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png)](https://postimg.cc/18VY5K2Q)
 **AutomationZ Mod Update Auto-Deploy** is a desktop tool designed to automatically detect Steam Workshop mod updates and deploy them to your server — **without manual uploads, late-night restarts, or players being locked out due to outdated mods**.
 
 Originally built for **DayZ**, this tool works just as well for **Arma**, other modded games, VPS servers, server parks, and any workflow where folders need to stay in sync.
