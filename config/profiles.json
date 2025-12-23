@@ -1,0 +1,14 @@
+{
+    "profiles": [
+        {
+            "name": "Your DayZ / Game Server",
+            "host": "ftp.hostname.com",
+            "port": 21,
+            "username": "username",
+            "password": "password",
+            "tls": false,
+            "root": "/dayzstandalone"
+        }
+    ],
+    "active_profile": "Your DayZ / Game Server"
+}

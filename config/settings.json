@@ -1,0 +1,22 @@
+{
+    "app": {
+        "timeout_seconds": 30,
+        "tick_seconds": 60,
+        "auto_start": false,
+        "workshop_dir": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\DayZ\\!Workshop"
+    },
+    "deploy": {
+        "mode": "ftp",
+        "remote_mods_base": "mods",
+        "local_deploy_dir": "C:/Program Files (x86)/Steam/steamapps/common/DayZServer/mods",
+        "debounce_seconds": 60,
+        "bundle_window_seconds": 30,
+        "exclude_patterns": []
+    },
+    "discord": {
+        "webhook_url": "https://discord.com/api/webhooks/Your_Discord_Webhook",
+        "notify_update_found": true,
+        "notify_upload_done": true,
+        "notify_failure": true
+    }
+}
