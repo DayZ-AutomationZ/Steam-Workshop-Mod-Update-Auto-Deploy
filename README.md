@@ -268,5 +268,24 @@ Global configuration.
 [![Automation_Z_Mod_Update_Auto_Deploy_settings.png](https://i.postimg.cc/Sxg0dTGX/Automation_Z_Mod_Update_Auto_Deploy_settings.png)](https://postimg.cc/BjPwQCks)
 
 
-**Created by Danny van den Brande**  
-AutomationZ Project
+## Credits
+
+---
+🧩 AutomationZ Admin Control Center
+These tools are part of the AutomationZ Admin Toolkit:
+
+- AutomationZ Mod Update Auto Deploy
+- AutomationZ Uploader
+- AutomationZ Scheduler
+- AutomationZ Server Backup Scheduler
+- AutomationZ Server Health
+- AutomationZ Config Diff 
+- AutomationZ Admin Orchestrator
+- AutomationZ Log Cleanup Scheduler
+
+Together they form a complete server administration solution.
+
+### 💚 Support the project
+
+AutomationZ tools are built for server owners by a server owner.  
+If these tools save you time or help your community, consider supporting development.
