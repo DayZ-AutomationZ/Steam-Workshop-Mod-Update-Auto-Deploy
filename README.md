@@ -20,7 +20,7 @@ a little Christmas present for **DayZ (and other) server owners**.
 🎄 **Brought to you by Danny van den Brande**
 
 
-# AutomationZ Mod Update Auto-Deploy
+# AutomationZ Mod Update Auto-Deploy [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R51QD7BU)
 [![Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png](https://i.postimg.cc/zGxm7tkV/Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png)](https://postimg.cc/18VY5K2Q)
 **AutomationZ Mod Update Auto-Deploy** is a desktop tool designed to automatically detect Steam Workshop mod updates and deploy them to your server — **without manual uploads, late-night restarts, or players being locked out due to outdated mods**.
 
@@ -293,4 +293,4 @@ If these tools save you time or help your community, consider supporting develop
 ☕ Support me [Ko-fi](https://ko-fi.com/dannyvandenbrande) 
 
 Created by **Danny van den Brande**  
-DayZ AutomationZ
+DayZ AutomationZ [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R51QD7BU)
