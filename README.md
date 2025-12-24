@@ -48,8 +48,8 @@ This tool **solves that problem permanently**.
 - Detects **any file change** inside a mod folder
 - Automatically deploys the **entire mod folder**
 - Supports:
-  - **FTP / FTPS** upload to remote servers
-  - **LOCAL** copy to another folder (server parks, sync tools, etc.)
+  - **FTP / FTPS** upload to remote (DayZ) Game servers
+  - **LOCAL** copy to a local (DayZ) Game folder (server parks, sync tools, etc.)
 - Sends optional **Discord notifications**
 - Works fully unattended (overnight, while you’re away)
 
