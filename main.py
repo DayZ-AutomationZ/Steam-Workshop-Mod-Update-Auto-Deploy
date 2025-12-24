@@ -1327,7 +1327,7 @@ class App(tk.Tk):
             "- No folders are duplicated\n"
             "- Missing folders are created automatically\n"
             "\n"
-            "AutomationZ Server Backup Scheduler is free and open-source software.\n\n"
+            "AutomationZ Tools are free and open-source software.\n\n"
             "If this tool helps you automate server tasks, save time,\n"
             "or manage multiple servers more easily,\n"
             "consider supporting development with a donation.\n\n"
