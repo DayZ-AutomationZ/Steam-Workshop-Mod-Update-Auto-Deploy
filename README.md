@@ -267,6 +267,8 @@ Watched Steam Workshop mods.
 Global configuration.
 [![Automation_Z_Mod_Update_Auto_Deploy_settings.png](https://i.postimg.cc/Sxg0dTGX/Automation_Z_Mod_Update_Auto_Deploy_settings.png)](https://postimg.cc/BjPwQCks)
 
+# Discord Notification
+[![Automation-Z-Mod-Update-Auto-Deploy-Discord.png](https://i.postimg.cc/4d2jtKPd/Automation-Z-Mod-Update-Auto-Deploy-Discord.png)](https://postimg.cc/FdcPXH25)
 
 ## Credits
 
