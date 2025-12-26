@@ -295,5 +295,5 @@ If these tools save you time or help your community, consider supporting develop
 
 ☕ Support me [Ko-fi](https://ko-fi.com/dannyvandenbrande) 
 
-Created by **Danny van den Brande**  
+Created by **Danny van den Brande** “Built to quietly solve problems, not to impress.”
 DayZ AutomationZ [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R51QD7BU)
