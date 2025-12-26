@@ -1,5 +1,5 @@
 ## 💡 Usage Tip — Discord + Mobile Control Panel
-
+ 
 AutomationZ works especially well when combined with **Discord notifications** and your hosting provider’s **mobile control panel**. 
 
 How admins actually use it in practice:
