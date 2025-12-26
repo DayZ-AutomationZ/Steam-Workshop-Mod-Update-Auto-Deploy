@@ -328,3 +328,19 @@ If these tools save you time or help your community, consider supporting develop
 
 Created by **Danny van den Brande** “Built to quietly solve problems, not to impress.”
 DayZ AutomationZ [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R51QD7BU)
+
+## Attribution & Credits
+
+AutomationZ is an open-source project created and maintained by **Danny van den Brande**.
+
+If you fork, modify, or redistribute this project, you **must** retain the original
+copyright notice and MIT license, as required by the license.
+
+Visible attribution in the UI or documentation is **appreciated**, but not required.
+If you build upon AutomationZ, please consider crediting the original project:
+
+**AutomationZ**  
+https://github.com/DayZ-AutomationZ
+
+Thank you for respecting the work and the time behind it.
+
