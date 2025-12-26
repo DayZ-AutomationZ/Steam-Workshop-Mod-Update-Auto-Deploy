@@ -1,4 +1,4 @@
-# Python & GUI Requirements (AutomationZ)
+# Python & GUI Requirements (AutomationZ) 
 
 AutomationZ tools are written in **Python** and use a **simple graphical interface (Tkinter / ttk)**.  
 This document explains **what is required**, **how to install it**, and **how to verify everything works** before running any AutomationZ tool.
