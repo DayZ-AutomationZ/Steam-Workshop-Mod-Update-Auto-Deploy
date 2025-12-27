@@ -1,1 +1,70 @@
+# --------------------
+# Python
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.env.bak/
+
+# --------------------
+# OS / Editor junk
+# --------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+
+# --------------------
+# Logs & runtime output
+# --------------------
+logs/
+*.log
+
+# --------------------
+# Local config / secrets
+# --------------------
+config.local.json
+settings.local.json
+*.secret
+*.key
+
+# --------------------
+# AutomationZ runtime data
+# --------------------
+state/
+cache/
+snapshots/
+backups/
+history/
+
+# --------------------
+# FTP / Server temp files
+# --------------------
+*.tmp
+*.bak
+*.old
+
+# --------------------
+# Packaging / builds
+# --------------------
+dist/
+build/
+*.zip
+
+# --------------------
+# Crash dumps
+# --------------------
+*.dmp
+
+# --------------------
+# Windows executables (if generated locally)
+# --------------------
+*.exe
 
