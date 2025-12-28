@@ -22,7 +22,6 @@ a little Christmas present for **DayZ (and other) server owners**.
 
 # AutomationZ Mod Update Auto-Deploy [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R51QD7BU)
 [![Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png](https://i.postimg.cc/zGxm7tkV/Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png)](https://postimg.cc/18VY5K2Q)
-[Steam Workshop Mod Update Auto Deploy Youtube Video](https://www.youtube.com/watch?v=dSDPvEVeGdc)
 
 **AutomationZ Mod Update Auto-Deploy** is a desktop tool designed to automatically detect Steam Workshop mod updates and deploy them to your server — **without manual uploads, late-night restarts, or players being locked out due to outdated mods**.
 
