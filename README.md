@@ -20,7 +20,7 @@ a little Christmas present for **DayZ (and other) server owners**.
 🎄 **Brought to you by Danny van den Brande**
 
 USE THIS TOOL TOGETHER WITH THE RESTART COMPANION AND ELIMINATE YOUR PBO MISMATCH DOWNTIME FOR 99%!
-🔗 **AutomationZ Restart Delay Companion**  
+🔗 **AutomationZ Restart Companion**  
 [https://github.com/DayZ-AutomationZ/AutomationZ-Restart-Companion/tree/main](https://github.com/DayZ-AutomationZ/AutomationZ-Restart-Companion/tree/main)
 
 
