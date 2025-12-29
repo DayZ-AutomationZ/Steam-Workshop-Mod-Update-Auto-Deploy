@@ -26,7 +26,9 @@ USE THIS TOOL TOGETHER WITH THE RESTART COMPANION AND ELIMINATE YOUR PBO MISMATC
 # AutomationZ Mod Update Auto-Deploy [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R51QD7BU)
 [![Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png](https://i.postimg.cc/zGxm7tkV/Automation_Z_Mod_Update_Auto_Deploy_Dashboard.png)](https://postimg.cc/18VY5K2Q)
 
-**AutomationZ Mod Update Auto-Deploy** is a desktop tool designed to automatically detect Steam Workshop mod updates and deploy them to your server — **without manual uploads, late-night restarts, or players being locked out due to outdated mods**. It can send a Markerfile to perfectly work in sync with the Restart Companion. The File is being uploaded after a mod or mods are updated to the server, the file is in /daystandalone and the Restart Companion watches the file for change in timestamps, if a mod is updated the file is uploaded after a delay and the restart companion will detect a change and restarts your server, Local or rcon.
+**AutomationZ Mod Update Auto-Deploy** is a desktop tool designed to automatically detect Steam Workshop mod updates and deploy them to your server — **without manual uploads, late-night restarts, or players being locked out due to outdated mods**. 
+
+It can send a Markerfile to perfectly work in sync with the Restart Companion. The File is being uploaded after a mod or mods are updated to the server, the file is in /daystandalone and the Restart Companion watches the file for change in timestamps, if a mod is updated the file is uploaded after a delay and the restart companion will detect a change and restarts your server, Local or rcon.
 
 Originally built for **DayZ**, this tool works just as well for **Arma**, other modded games, VPS servers, server parks, and any workflow where folders need to stay in sync.
 ---
