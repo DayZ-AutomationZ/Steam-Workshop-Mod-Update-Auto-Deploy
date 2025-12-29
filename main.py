@@ -238,11 +238,20 @@ def load_settings() -> dict:
         },
         "deploy": {
             "mode": "ftp",  # ftp | local
-            "remote_mods_base": "mods",
+            "remote_mods_base": "",
             "local_deploy_dir": "",  # used when mode=local
             "debounce_seconds": 60,  # wait for Steam to finish writing before deploy
             "bundle_window_seconds": 30,  # bundle multiple updates into one deploy batch
             "exclude_patterns": ["*.log","*.tmp","*.cache","*.bak","*.old","*.swp","*.part","*.download"]
+        },
+        "marker": {
+            # Optional: upload/copy this marker file AFTER a deploy batch completes.
+            # Designed to pair with AutomationZ Restart Delay Companion.
+            "enabled": False,
+            "local_file": "",
+            # Remote directory to upload to (FTP) or copy into (LOCAL), relative to Profile Root.
+            # Example: "dayzstandalone" or "dayzstandalone/." or "" (root)
+            "remote_dir": ""
         },
         "discord": {
             "webhook_url": "",
@@ -581,7 +590,7 @@ class App(tk.Tk):
                     break
                 time.sleep(1)
 
-    
+
     def _pending_earliest(self) -> Optional[float]:
         return min(self.pending.values()) if self.pending else None
 
@@ -686,6 +695,8 @@ class App(tk.Tk):
             self.log.info("Scan done. No changes.")
             messagebox.showinfo("Scan", "No mod updates detected.")
 
+
+
     def _deploy_many(self, mods: List[ModWatch]):
         with self._busy_lock:
             self.after(0, lambda: self.lbl_queue.configure(text=f"Deploy: running ({len(mods)} mod(s))"))
@@ -758,8 +769,13 @@ class App(tk.Tk):
                             self.state[m.name] = st
                         self.pending.pop(m.name, None)
 
-
                 save_json(STATE_PATH, {"mods": self.state})
+
+                # Optional: upload/copy a restart marker file AFTER all mods in this batch are deployed.
+                try:
+                    self._deploy_marker_after_batch(mode=mode, profile=p, ftp_cli=cli, root=root, local_deploy_dir=local_deploy_dir)
+                except Exception as e:
+                    self.log.warn(f"Marker: failed: {e}")
 
                 disc = self.settings.get("discord", {})
                 if disc.get("notify_upload_done", True) and (disc.get("webhook_url") or "").strip():
@@ -787,6 +803,53 @@ class App(tk.Tk):
                     self._maybe_start_deploy()
                 except Exception:
                     pass
+
+    def _deploy_marker_after_batch(self, mode: str, profile: Optional[Profile], ftp_cli: Optional['FTPClient'],
+                                   root: str, local_deploy_dir: pathlib.Path) -> None:
+        """Upload/copy the configured marker file after a deploy batch completes."""
+        mrk = self.settings.get("marker", {}) or {}
+        enabled = bool(mrk.get("enabled", False))
+        local_file = (mrk.get("local_file", "") or "").strip()
+        remote_dir = (mrk.get("remote_dir", "") or "").strip()
+
+        if not enabled:
+            return
+        if not local_file:
+            self.log.warn("Marker: enabled but local_file is empty.")
+            return
+
+        lp = pathlib.Path(local_file).expanduser()
+        if not lp.exists() or not lp.is_file():
+            self.log.warn(f"Marker: local file not found: {lp}")
+            return
+
+        filename = lp.name
+
+        if mode == "ftp":
+            if not ftp_cli or not profile:
+                self.log.warn("Marker: FTP mode but no active profile/connection.")
+                return
+            rdir = norm_remote(remote_dir)
+            remote_full = "/" + "/".join([root, rdir, filename]).strip("/")
+            self.log.info(f"Marker: uploading {filename} -> {remote_full}")
+            ftp_cli.upload_file(lp, remote_full)
+            self.log.info("Marker: upload complete.")
+            return
+
+        if mode == "local":
+            if not str(local_deploy_dir).strip():
+                self.log.warn("Marker: LOCAL mode but local_deploy_dir is empty.")
+                return
+            rdir = pathlib.Path(norm_remote(remote_dir)) if remote_dir else pathlib.Path("")
+            dest_dir = (pathlib.Path(local_deploy_dir) / rdir)
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            dest = dest_dir / filename
+            shutil.copy2(lp, dest)
+            self.log.info(f"Marker: copied {filename} -> {dest}")
+            return
+
+        raise RuntimeError(f"Unknown deploy mode: {mode}")
+
 
     # Profiles
     def _build_profiles(self):
@@ -1182,6 +1245,26 @@ class App(tk.Tk):
         ttk.Label(dep_box, text="Exclude patterns (comma-separated)").grid(row=5, column=0, sticky="w", padx=10, pady=6)
         ttk.Entry(dep_box, textvariable=self.s_exclude, width=70).grid(row=5, column=1, sticky="w", padx=10, pady=6, columnspan=2)
 
+        # Restart marker (optional)
+        marker_box = ttk.LabelFrame(outer, text="Restart marker (optional)")
+        marker_box.pack(fill="x", pady=(0,10))
+        mrk = self.settings.get("marker", {}) or {}
+
+        self.s_marker_enabled = tk.BooleanVar(value=bool(mrk.get("enabled", False)))
+        self.s_marker_file = tk.StringVar(value=str(mrk.get("local_file", "")))
+        self.s_marker_remote = tk.StringVar(value=str(mrk.get("remote_dir", "")))
+
+        ttk.Checkbutton(marker_box, text="Upload/copy marker file after deploy batch", variable=self.s_marker_enabled)\
+            .grid(row=0, column=0, columnspan=3, sticky="w", padx=10, pady=(6,2))
+
+        ttk.Label(marker_box, text="Local marker file").grid(row=1, column=0, sticky="w", padx=10, pady=6)
+        ttk.Entry(marker_box, textvariable=self.s_marker_file, width=70).grid(row=1, column=1, sticky="w", padx=10, pady=6)
+        ttk.Button(marker_box, text="Browse…", command=self.browse_marker_file, style="Colored.TButton").grid(row=1, column=2, sticky="w", padx=10, pady=6)
+
+        ttk.Label(marker_box, text="Remote folder (relative to root)").grid(row=2, column=0, sticky="w", padx=10, pady=6)
+        ttk.Entry(marker_box, textvariable=self.s_marker_remote, width=30).grid(row=2, column=1, sticky="w", padx=10, pady=6)
+        ttk.Label(marker_box, text="Example: /dayzstandalone/@modname (leave empty) if /dayzstandalone/modfolder/@modname fill modfolder").grid(row=2, column=2, sticky="w", padx=10, pady=6)
+
 
         disc_box = ttk.LabelFrame(outer, text="Discord (optional)")
         disc_box.pack(fill="x", pady=(0,10))
@@ -1212,6 +1295,11 @@ class App(tk.Tk):
         if p:
             self.s_local_deploy.set(p)
 
+    def browse_marker_file(self):
+        p = filedialog.askopenfilename(title="Select marker file")
+        if p:
+            self.s_marker_file.set(p)
+
     def save_settings_ui(self):
         try:
             timeout = int((self.s_timeout.get() or "30").strip())
@@ -1240,11 +1328,16 @@ class App(tk.Tk):
         }
         self.settings["deploy"] = {
             "mode": (self.s_mode.get() or "ftp").strip().lower(),
-            "remote_mods_base": (self.s_remote_base.get() or "mods").strip() or "mods",
+            "remote_mods_base": (self.s_remote_base.get() or "").strip(),
             "local_deploy_dir": (self.s_local_deploy.get() or "").strip(),
             "debounce_seconds": self.debounce_seconds,
             "bundle_window_seconds": self.bundle_window_seconds,
             "exclude_patterns": self.exclude_patterns,
+        }
+        self.settings["marker"] = {
+            "enabled": bool(getattr(self, "s_marker_enabled", tk.BooleanVar(value=False)).get()),
+            "local_file": (getattr(self, "s_marker_file", tk.StringVar(value="")).get() or "").strip(),
+            "remote_dir": (getattr(self, "s_marker_remote_dir", tk.StringVar(value="")).get() or "").strip(),
         }
         self.settings["discord"] = {
             "webhook_url": (self.s_discord.get() or "").strip(),
@@ -1327,7 +1420,16 @@ class App(tk.Tk):
             "- No folders are duplicated\n"
             "- Missing folders are created automatically\n"
             "\n"
-            "AutomationZ Tools are free and open-source software.\n\n"
+            "What is the markerfile?\n"
+            "- The markerfile is uploaded to your /daystandalone root folder or whatever folder you want.\n"
+            "It works together with the Restart Companion, When a mod is or mods are updated the markerfile will be uploaded after it and overwrite the existing one.\n"
+            "The restart Companion will check every 30 seconds if the file has been changed.\n"
+            "As soon as the Restart Companion detects a change in that file it knows a MOD has been updated and triggers a restart locally or with rcon.\n"
+            "You can set a delay for the restart (example: 5 min) and if another update is detected the timer will be reset to 5 so it wont restart during another upload\n"
+            "this would be rare if that happens but it could, so for safety i added this. You can find the Restart Companion in our github repositories\n"
+            "Using the Restart Companion and this tool together is the ultimate fix for the years OLD PBO Mismatch Downtime for many servers!\n"
+            "\n"
+            "AutomationZ Server Backup Scheduler is free and open-source software.\n\n"
             "If this tool helps you automate server tasks, save time,\n"
             "or manage multiple servers more easily,\n"
             "consider supporting development with a donation.\n\n"
