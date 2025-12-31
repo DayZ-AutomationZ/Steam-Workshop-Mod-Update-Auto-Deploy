@@ -12,7 +12,7 @@ a little Christmas present for **DayZ (and other) server owners**.
 
 ### What it does
 **AutomationZ** watches your local Steam Workshop mods and **automatically deploys updates** to your server — even while you sleep 😴
-[![Automation-Z-FINAL-CORRECT-TEXT-SLOW.gif](https://i.postimg.cc/2jwVK155/Automation-Z-FINAL-CORRECT-TEXT-SLOW.gif)](https://postimg.cc/t7sq1CW0)
+[![Automation-Z-GIF.gif](https://i.postimg.cc/ncrcSTgM/Automation-Z-GIF.gif)](https://postimg.cc/WhRvhm2P)
 **Relax. Eat. Sleep. Let AutomationZ handle the stress.**
 
 ---
